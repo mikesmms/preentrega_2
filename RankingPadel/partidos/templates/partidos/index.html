@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+
+
+{% block Titulo %}
+        Partidos
+{% endblock Titulo %}
+
+{% block Contenido %}
+    Debajo podras visualizar todos los partidos
+
+    <div>
+        <a href="{% url 'Core:index' %}">Ir al Inicio</a>
+
+        {% for partido in partidos %}
+
+        <h1>
+            {{partido}}
+        </h1>
+            
+        {% endfor %}
+    </div>
+{% endblock Contenido %}

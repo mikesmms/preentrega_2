@@ -1,0 +1,13 @@
+{% extends 'core/base.html' %}
+
+{% block Titulo %}
+        Home Page
+{% endblock Titulo %}
+
+{% block Contenido %}
+    Bienvenido al Ranking de Padel
+
+    <div>
+        <a href="{% url 'Partidos:index' %}">Ir a Partidos</a>
+    </div>
+{% endblock Contenido %}
