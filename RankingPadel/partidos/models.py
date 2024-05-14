@@ -11,15 +11,15 @@ class Jugador(models.Model):
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
     sexo = models.CharField(max_length=6, choices= OPCIONES_DE_GENERO)
-    nacimiento = models.DateField()
+    nacimiento = models.DateField(null=True, blank=True)
 
     def __str__(self) -> str:
         return f"{self.nombre} {self.apellido}"
     
 class Torneo(models.Model):
     nombre = models.CharField(max_length=50, unique=True)
-    fecha_de_inicio = models.DateField()
-    fecha_de_cierre = models.DateField()
+    fecha_de_inicio = models.DateField(null=True, blank=True)
+    fecha_de_cierre = models.DateField(null=True, blank=True)
 
     def __str__(self) -> str:
         return self.nombre
@@ -31,7 +31,7 @@ class Partido(models.Model):
     games_visitante = models.PositiveIntegerField()
     jugador_visitante_1 = models.ForeignKey(Jugador, related_name='partidos_como_visitante_1', on_delete=models.SET_NULL, null=True, blank=True)
     jugador_visitante_2 = models.ForeignKey(Jugador, related_name='partidos_como_visitante_2', on_delete=models.SET_NULL, null=True, blank=True)
-    fecha_de_partido = models.DateTimeField()
+    fecha_de_partido = models.DateTimeField(null=True, blank=True)
     torneo = models.ForeignKey('Torneo', related_name='partidos', on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self) -> str:

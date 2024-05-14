@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+
+
+{% block Titulo %}
+        Partidos
+{% endblock Titulo %}
+
+{% block Contenido %}
+    Debajo podras visualizar todos los jugadores
+
+    <div>
+        <a href="{% url 'Partidos:index' %}">Ir al Inicio de Partidos</a>
+        <a href="{% url 'Partidos:jugadores_create' %}">Crear Jugador</a>
+        {% for jugador in jugadores %}
+
+        <h1>
+            {{jugador}}
+        </h1>
+            
+        {% endfor %}
+    </div>
+{% endblock Contenido %}

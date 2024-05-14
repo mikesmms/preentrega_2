@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+
+
+{% block Titulo %}
+        Torneos
+{% endblock Titulo %}
+
+{% block Contenido %}
+    Debajo podras visualizar todos los torneos
+
+    <div>
+        <a href="{% url 'Partidos:index' %}">Ir al Inicio de la App</a>
+        <a href="{% url 'Partidos:torneos_create' %}">Crear Torneo</a>
+
+        {% for torneo in torneos %}
+
+        <h1>
+            {{torneo}}
+        </h1>
+            
+        {% endfor %}
+    </div>
+{% endblock Contenido %}

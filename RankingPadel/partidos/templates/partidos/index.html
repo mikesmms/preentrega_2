@@ -2,21 +2,18 @@
 
 
 {% block Titulo %}
-        Partidos
+        Aplicacion de Ranking de Padel
 {% endblock Titulo %}
 
 {% block Contenido %}
-    Debajo podras visualizar todos los partidos
+Este es el index de Partidos
 
     <div>
-        <a href="{% url 'Core:index' %}">Ir al Inicio</a>
+        <a href="{% url 'Core:index' %}">Volver al Inicio</a>
+        <a href="{% url 'Partidos:partidos_list' %}">Ir a Partidos</a>
+        <a href="{% url 'Partidos:jugadores_list' %}">Ir a Jugadores</a>
+        <a href="{% url 'Partidos:torneos_list' %}">Ir a Torneos</a>
+   
 
-        {% for partido in partidos %}
-
-        <h1>
-            {{partido}}
-        </h1>
-            
-        {% endfor %}
     </div>
 {% endblock Contenido %}
