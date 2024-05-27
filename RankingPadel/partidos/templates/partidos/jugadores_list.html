@@ -11,10 +11,13 @@
     <div>
         <a href="{% url 'Partidos:index' %}">Ir al Inicio de Partidos</a>
         <a href="{% url 'Partidos:jugadores_create' %}">Crear Jugador</a>
-        {% for jugador in jugadores %}
+        {% for object in jugadores %}
 
         <h1>
-            {{jugador}}
+            {{object}}
+            <span class="badge bg-secondary">ID: {{ object.id }}</span>
+            <a href="{% url 'Partidos:jugador_detail' object.id %}" class="btn btn-primary btn-sm ms-2">Detalle</a>
+
         </h1>
             
         {% endfor %}

@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+
+
+{% block Titulo %}
+        Jugador Detail
+{% endblock Titulo %}
+
+{% block Contenido %}
+    Debajo podras visualizar los datos especificos:
+
+    <div class="card shadow-sm my-4 ms-4" style="width: 20rem;"> <!-- Adds left margin with ms-4 -->
+        <div class="card-header">
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Nombre:</strong> {{ object.nombre }}</li>
+            <li class="list-group-item"><strong>Apellido:</strong> {{ object.apellido }}</li>
+        </ul>
+    </div>
+
+
+{% endblock Contenido %}

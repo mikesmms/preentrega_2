@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.db.models import Q
 from partidos.forms import PartidoForm, JugadorForm, TorneoForm
-from partidos.models import Partido
+from partidos.models import Partido, Jugador
+from django.views.generic import DetailView
+
 
 # Create your views here.
 from . import models
@@ -44,6 +46,9 @@ def jugadores_list(request):
     consulta = models.Jugador.objects.all()
     contexto = {"jugadores": consulta}
     return render(request, "partidos/jugadores_list.html", contexto)
+
+class JugadoresDetail(DetailView):
+    model = Jugador
 
 def jugadores_create(request):
     if request.method == "POST":
