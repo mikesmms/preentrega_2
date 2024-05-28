@@ -7,9 +7,13 @@
 {% block Contenido %}
     Bienvenido al Ranking de Padel
 
+{% if user.is_authenticated %}
+    <p>Bienvenido {{user.username}}</p>
+{% endif %}
+
     <div>
         <button onclick="location.href='{% url 'Partidos:index' %}'" class="btn btn-primary">Ir a la App</button>
         <button onclick="location.href='{% url 'core:login' %}'" class="btn btn-primary">Login</button>
-
+        <button onclick="location.href='{% url 'core:register' %}'" class="btn btn-primary">Crear Usuario</button>
     </div>
 {% endblock Contenido %}
