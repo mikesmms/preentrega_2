@@ -1,25 +1,26 @@
 {% extends 'core/base.html' %}
 
-
 {% block Titulo %}
-        Aplicacion de Ranking de Padel
+    Aplicación de Ranking de Padel
 {% endblock Titulo %}
 
 {% block Contenido %}
-Este es el index de la App
+<div class="text-center my-4">
+    <h2>Este es el index de la App</h2>
+</div>
 
-    <div>
-        <a href="{% url 'core:index' %}">Volver al Inicio</a>
-        <a href="{% url 'Partidos:partidos_list' %}">Ir a Partidos</a>
-        <a href="{% url 'Partidos:jugadores_list' %}">Ir a Jugadores</a>
-        <a href="{% url 'Partidos:torneos_list' %}">Ir a Torneos</a>
-        {% if user.is_authenticated %}
-        <form method="post" action="{% url 'core:logout' %}">
+<div class="d-flex flex-column align-items-center">
+    <div class="mb-3">
+        <a href="{% url 'core:index' %}" class="btn btn-primary mx-1">Volver al Inicio</a>
+        <a href="{% url 'Partidos:partidos_list' %}" class="btn btn-secondary mx-1">Ir a Partidos</a>
+        <a href="{% url 'Partidos:jugadores_list' %}" class="btn btn-info mx-1">Ir a Jugadores</a>
+        <a href="{% url 'Partidos:torneos_list' %}" class="btn btn-success mx-1">Ir a Torneos</a>
+    </div>
+    {% if user.is_authenticated %}
+        <form method="post" action="{% url 'core:logout' %}" class="d-inline-block">
             {% csrf_token %}
-            <button type="submit">Logout</button>
+            <button type="submit" class="btn btn-danger mx-1">Logout</button>
         </form>
     {% endif %}
-   
-
-    </div>
+</div>
 {% endblock Contenido %}

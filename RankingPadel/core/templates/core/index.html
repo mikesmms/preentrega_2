@@ -1,18 +1,28 @@
 {% extends 'core/base.html' %}
 
 {% block Titulo %}
-        Home Page
+    Home Page
 {% endblock Titulo %}
 
 {% block Contenido %}
-    Bienvenido al Ranking de Padel
-
 {% if user.is_authenticated %}
-    <p>Bienvenido {{user.username}}</p>
+    <p>Bienvenido {{ user.username }}</p>
 {% endif %}
 
-    <div>
+<div>
+    {% if not user.is_authenticated %}
         <button onclick="location.href='{% url 'core:login' %}'" class="btn btn-primary">Login</button>
         <button onclick="location.href='{% url 'core:register' %}'" class="btn btn-primary">Crear Usuario</button>
-    </div>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+        <form method="post" action="{% url 'core:logout' %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Logout</button>
+        </form>
+    {% endif %}
+    
+    <button onclick="location.href='{% url 'core:about' %}'" class="btn btn-primary">About</button>
+    <button onclick="location.href='{% url 'Partidos:index' %}'" class="btn btn-primary">Ir a la App</button>
+</div>
 {% endblock Contenido %}

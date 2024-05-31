@@ -1,24 +1,33 @@
 {% extends 'core/base.html' %}
 
-
 {% block Titulo %}
-        Jugadores | Crear
+    Jugadores | Crear
 {% endblock Titulo %}
 
 {% block Contenido %}
-    Debajo podras crear jugadores
+<div class="container my-4">
+    <h2 class="text-center">Crear Jugador</h2>
+    <p class="text-center">Debajo podrás crear jugadores</p>
 
-    <div>
-        <a href="{% url 'core:index' %}">Ir al Inicio</a>
-        <a href="{% url 'Partidos:index' %}">Ir al Inicio de Partidos</a>
-
-      <form action="" method="post">
-        {% csrf_token %}
-        {{form}}
-        <button type="submit">Crear</button>
-
-      </form>
-
-
+    <div class="text-center mb-4">
+        <a class="btn btn-primary mx-1" href="{% url 'core:index' %}">Ir al Inicio</a>
+        <a class="btn btn-secondary mx-1" href="{% url 'Partidos:index' %}">Ir al Inicio de Partidos</a>
     </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success">Crear</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock Contenido %}

@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+
+{% block Titulo %}
+    Confirmar Eliminación
+{% endblock Titulo %}
+
+{% block Contenido %}
+<div class="container my-4">
+    <p class="text-center">¿Estás seguro de que deseas eliminar este partido?</p>
+    <div class="card shadow-sm mx-auto" style="width: 20rem;">
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Jugador Local 1:</strong> {{ object.jugador_local_1.nombre }} {{ object.jugador_local_1.apellido }}</li>
+                <li class="list-group-item"><strong>Jugador Local 2:</strong> {{ object.jugador_local_2.nombre }} {{ object.jugador_local_2.apellido }}</li>
+                <li class="list-group-item"><strong>Jugador Visitante 1:</strong> {{ object.jugador_visitante_1.nombre }} {{ object.jugador_visitante_1.apellido }}</li>
+                <li class="list-group-item"><strong>Jugador Visitante 2:</strong> {{ object.jugador_visitante_2.nombre }} {{ object.jugador_visitante_2.apellido }}</li>
+                <li class="list-group-item"><strong>Fecha de Partido:</strong> {{ object.fecha_de_partido|date:"d M Y H:i" }}</li>
+                <li class="list-group-item"><strong>Torneo:</strong> {{ object.torneo.nombre }}</li>
+            </ul>
+            <div class="text-center mt-3">
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                    <a href="{% url 'Partidos:partidos_list' %}" class="btn btn-secondary">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock Contenido %}

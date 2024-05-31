@@ -1,0 +1,13 @@
+{% extends 'core/base.html' %}
+
+{% block Titulo %}
+        About
+{% endblock Titulo %}
+
+{% block Contenido %}
+    Acerca del Proyecto y su Creador:
+    Aficionado del padel.
+    <div>
+        <button onclick="location.href='{% url 'core:index' %}'" class="btn btn-primary">Volver al Home</button>
+    </div>
+{% endblock Contenido %}

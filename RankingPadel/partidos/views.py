@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect
 from django.db.models import Q
 from partidos.forms import PartidoForm, JugadorForm, TorneoForm
 from partidos.models import Partido, Jugador
-from django.views.generic import DetailView
+from django.views.generic import DetailView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from . import models
+from django.urls import reverse_lazy
 
 
 @login_required
@@ -81,4 +82,6 @@ def torneos_create(request):
     return render(request, "partidos/torneos_create.html", {"form": form})
 
 
-    #DELETE!!!!
+class PartidoDelete(LoginRequiredMixin, DeleteView):
+    model = Partido
+    success_url = reverse_lazy('Partidos:partidos_list')

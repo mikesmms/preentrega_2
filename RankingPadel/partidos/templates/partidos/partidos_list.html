@@ -5,45 +5,53 @@
 {% endblock Titulo %}
 
 {% block Contenido %}
-    Debajo podras visualizar todos los partidos
+<div class="text-center my-4">
+    <h2>Debajo podrás visualizar todos los partidos</h2>
+</div>
 
-    <div>
-        <a href="{% url 'core:index' %}">Ir al Inicio</a>
-        <a href="{% url 'Partidos:index' %}">Ir al Inicio de la App</a>
-        <a href="{% url 'Partidos:partidos_create' %}">Crear Partido</a>
+<div class="mb-4 text-center">
+    <a class="btn btn-primary mx-1" href="{% url 'core:index' %}">Ir al Inicio</a>
+    <a class="btn btn-secondary mx-1" href="{% url 'Partidos:index' %}">Ir al Inicio de la App</a>
+    <a class="btn btn-success mx-1" href="{% url 'Partidos:partidos_create' %}">Crear Partido</a>
+</div>
 
-        <form action="{% url 'Partidos:partidos_list' %}" method="get">
-            <input type="text" name="busqueda" placeholder="Buscar partido..." value="{{ busqueda }}">
-            <button type="submit">Buscar</button>
-        </form>
+<form class="form-inline justify-content-center mb-4" action="{% url 'Partidos:partidos_list' %}" method="get">
+    <input class="form-control mr-2" type="text" name="busqueda" placeholder="Buscar partido..." value="{{ busqueda }}">
+    <button class="btn btn-outline-primary" type="submit">Buscar</button>
+</form>
 
-        <table border="1">
-            <thead>
+<div class="table-responsive">
+    <table class="table table-hover table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Jugador Local 1</th>
+                <th>Jugador Local 2</th>
+                <th>Games Local</th>
+                <th>Games Visitante</th>
+                <th>Jugador Visitante 1</th>
+                <th>Jugador Visitante 2</th>
+                <th>Fecha de Partido</th>
+                <th>Torneo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for partido in partidos %}
                 <tr>
-                    <th>Jugador Local 1</th>
-                    <th>Jugador Local 2</th>
-                    <th>Games Local</th>
-                    <th>Games Visitante</th>
-                    <th>Jugador Visitante 1</th>
-                    <th>Jugador Visitante 2</th>
-                    <th>Fecha de Partido</th>
-                    <th>Torneo</th>
+                    <td>{{ partido.jugador_local_1.nombre }} {{ partido.jugador_local_1.apellido }}</td>
+                    <td>{{ partido.jugador_local_2.nombre }} {{ partido.jugador_local_2.apellido }}</td>
+                    <td>{{ partido.games_local }}</td>
+                    <td>{{ partido.games_visitante }}</td>
+                    <td>{{ partido.jugador_visitante_1.nombre }} {{ partido.jugador_visitante_1.apellido }}</td>
+                    <td>{{ partido.jugador_visitante_2.nombre }} {{ partido.jugador_visitante_2.apellido }}</td>
+                    <td>{{ partido.fecha_de_partido|date:"d M Y H:i" }}</td>
+                    <td>{{ partido.torneo.nombre }}</td>
+                    <td>
+                        <a href="{% url 'Partidos:partido_delete' partido.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                {% for partido in partidos %}
-                    <tr>
-                        <td>{{ partido.jugador_local_1.nombre }} {{ partido.jugador_local_1.apellido }}</td>
-                        <td>{{ partido.jugador_local_2.nombre }} {{ partido.jugador_local_2.apellido }}</td>
-                        <td>{{ partido.games_local }}</td>
-                        <td>{{ partido.games_visitante }}</td>
-                        <td>{{ partido.jugador_visitante_1.nombre }} {{ partido.jugador_visitante_1.apellido }}</td>
-                        <td>{{ partido.jugador_visitante_2.nombre }} {{ partido.jugador_visitante_2.apellido }}</td>
-                        <td>{{ partido.fecha_de_partido }}</td>
-                        <td>{{ partido.torneo.nombre }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock Contenido %}

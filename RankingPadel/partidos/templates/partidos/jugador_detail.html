@@ -1,21 +1,26 @@
 {% extends 'core/base.html' %}
 
-
 {% block Titulo %}
-        Jugador Detail
+    Detalle del Jugador
 {% endblock Titulo %}
 
 {% block Contenido %}
-    Debajo podras visualizar los datos especificos:
-
-    <div class="card shadow-sm my-4 ms-4" style="width: 20rem;"> <!-- Adds left margin with ms-4 -->
-        <div class="card-header">
+<div class="container my-4">
+    <h2 class="text-center">Datos Específicos del Jugador</h2>
+    <div class="card shadow-sm my-4 mx-auto" style="width: 20rem;">
+        <div class="card-header text-center bg-primary text-white">
+            Detalles del Jugador
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item"><strong>Nombre:</strong> {{ object.nombre }}</li>
             <li class="list-group-item"><strong>Apellido:</strong> {{ object.apellido }}</li>
+            <li class="list-group-item"><strong>Email:</strong> {{ object.email }}</li>
+            <li class="list-group-item"><strong>Fecha de Nacimiento:</strong> {{ object.fecha_nacimiento|date:"d M Y" }}</li>
+            <li class="list-group-item"><strong>Nacionalidad:</strong> {{ object.nacionalidad }}</li>
         </ul>
     </div>
-
-
+    <div class="text-center">
+        <a href="{% url 'Partidos:jugadores_list' %}" class="btn btn-secondary">Volver a la Lista de Jugadores</a>
+    </div>
+</div>
 {% endblock Contenido %}
