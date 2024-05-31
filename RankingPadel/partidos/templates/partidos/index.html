@@ -13,6 +13,12 @@ Este es el index de la App
         <a href="{% url 'Partidos:partidos_list' %}">Ir a Partidos</a>
         <a href="{% url 'Partidos:jugadores_list' %}">Ir a Jugadores</a>
         <a href="{% url 'Partidos:torneos_list' %}">Ir a Torneos</a>
+        {% if user.is_authenticated %}
+        <form method="post" action="{% url 'core:logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    {% endif %}
    
 
     </div>

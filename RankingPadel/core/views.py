@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth.views import LoginView
 from .forms import CustomAuthenticationForm, CustomCreationForm
 from django.http import HttpRequest
+from django.urls import reverse_lazy
+
 
 # Create your views here.
 def index(request):
@@ -10,6 +12,9 @@ def index(request):
 class CustomLoginView(LoginView):
     authentication_form = CustomAuthenticationForm
     template_name = "core/login.html"
+
+    def get_success_url(self):
+        return reverse_lazy("Partidos:index")
 
 def register(request: HttpRequest):
     if request.method == "POST":

@@ -1,8 +1,7 @@
 {% extends 'core/base.html' %}
 
-
 {% block Titulo %}
-        Partidos
+    Partidos
 {% endblock Titulo %}
 
 {% block Contenido %}
@@ -11,19 +10,40 @@
     <div>
         <a href="{% url 'core:index' %}">Ir al Inicio</a>
         <a href="{% url 'Partidos:index' %}">Ir al Inicio de la App</a>
-        <a href="{% url 'Partidos:partidos_create' %}">Create Partido</a>
+        <a href="{% url 'Partidos:partidos_create' %}">Crear Partido</a>
 
         <form action="{% url 'Partidos:partidos_list' %}" method="get">
-            <input type="text" name="busqueda" placeholder="Buscar partido...">
-            <button type ="submit">Buscar</button>
+            <input type="text" name="busqueda" placeholder="Buscar partido..." value="{{ busqueda }}">
+            <button type="submit">Buscar</button>
         </form>
 
-        {% for partido in partidos %}
-
-        <h1>
-            {{partido}}
-        </h1>
-            
-        {% endfor %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Jugador Local 1</th>
+                    <th>Jugador Local 2</th>
+                    <th>Games Local</th>
+                    <th>Games Visitante</th>
+                    <th>Jugador Visitante 1</th>
+                    <th>Jugador Visitante 2</th>
+                    <th>Fecha de Partido</th>
+                    <th>Torneo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for partido in partidos %}
+                    <tr>
+                        <td>{{ partido.jugador_local_1.nombre }} {{ partido.jugador_local_1.apellido }}</td>
+                        <td>{{ partido.jugador_local_2.nombre }} {{ partido.jugador_local_2.apellido }}</td>
+                        <td>{{ partido.games_local }}</td>
+                        <td>{{ partido.games_visitante }}</td>
+                        <td>{{ partido.jugador_visitante_1.nombre }} {{ partido.jugador_visitante_1.apellido }}</td>
+                        <td>{{ partido.jugador_visitante_2.nombre }} {{ partido.jugador_visitante_2.apellido }}</td>
+                        <td>{{ partido.fecha_de_partido }}</td>
+                        <td>{{ partido.torneo.nombre }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock Contenido %}

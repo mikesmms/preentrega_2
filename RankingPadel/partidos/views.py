@@ -3,17 +3,18 @@ from django.db.models import Q
 from partidos.forms import PartidoForm, JugadorForm, TorneoForm
 from partidos.models import Partido, Jugador
 from django.views.generic import DetailView
-
-
-# Create your views here.
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from . import models
 
+
+@login_required
 def index(request):
     consulta = models.Partido.objects.all()
     contexto = {"partidos": consulta}
     return render(request, "partidos/index.html", contexto)
 
-
+@login_required
 def partidos_list(request):
     busqueda = request.GET.get("busqueda", "")
     partidos = Partido.objects.all() 
@@ -41,15 +42,17 @@ def partidos_create(request):
         form = PartidoForm()
     return render(request, "partidos/partidos_create.html", {"form": form})
 
-
+@login_required
 def jugadores_list(request):
     consulta = models.Jugador.objects.all()
     contexto = {"jugadores": consulta}
     return render(request, "partidos/jugadores_list.html", contexto)
 
-class JugadoresDetail(DetailView):
+
+class JugadoresDetail(LoginRequiredMixin, DetailView):
     model = Jugador
 
+@login_required
 def jugadores_create(request):
     if request.method == "POST":
         form = JugadorForm(request.POST)
@@ -60,12 +63,13 @@ def jugadores_create(request):
         form = JugadorForm()
     return render(request, "partidos/jugadores_create.html", {"form": form})
 
-
+@login_required
 def torneos_list(request):
     consulta = models.Torneo.objects.all()
     contexto = {"torneos": consulta}
     return render(request, "partidos/torneos_list.html", contexto)
 
+@login_required
 def torneos_create(request):
     if request.method == "POST":
         form = TorneoForm(request.POST)
@@ -75,3 +79,6 @@ def torneos_create(request):
     else: #GET
         form = TorneoForm()
     return render(request, "partidos/torneos_create.html", {"form": form})
+
+
+    #DELETE!!!!
