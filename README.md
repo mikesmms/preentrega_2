@@ -1,3 +1,6 @@
+# Video
+https://www.loom.com/share/7970ed0687d04e8081deaf84a906aad0?sid=03586093-e5b3-4696-9f39-73ee3f9e0216
+
 # Padel Rank
 
 Comision: 54140
